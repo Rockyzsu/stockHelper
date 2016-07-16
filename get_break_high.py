@@ -6,7 +6,7 @@ import datetime
 info=ts.get_stock_basics()
 
 def loop_all_stocks():
-    stockID='300333'
+    stockID='600120'
     if is_break_high(stockID,60):
         print info.ix[stockID]['name'].decode('utf-8')
 
@@ -21,7 +21,11 @@ def is_break_high(stockID,days):
     df=ts.get_h_data(stockID,start=start_day,end=end_day)
 
     period_high=df['high'].max()
-    today_high=df[:1]['high'].values
+    #print period_high
+    today_high=df.iloc[0]['high']
+    #这里不能直接用 .values
+    #如果用的df【：1】 就需要用.values
+    #print today_high
     if today_high>=period_high:
         return True
     else:
