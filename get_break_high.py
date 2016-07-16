@@ -6,9 +6,13 @@ import datetime
 info=ts.get_stock_basics()
 
 def loop_all_stocks():
-    stockID='600120'
-    if is_break_high(stockID,60):
-        print info.ix[stockID]['name'].decode('utf-8')
+    for EachStockID in info.index:
+         if is_break_high(EachStockID,60):
+             print "High price on",
+             print EachStockID,
+             print info.ix[EachStockID]['name'].decode('utf-8')
+
+
 
 def is_break_high(stockID,days):
     end_day=datetime.date(datetime.date.today().year,datetime.date.today().month,datetime.date.today().day)
