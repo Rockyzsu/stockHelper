@@ -14,7 +14,7 @@ def loop_all_stocks():
              print "High price on",
              print EachStockID,
              print info.ix[EachStockID]['name'].decode('utf-8')
-            sql_db.insert_break_high(all_high_stock)
+             #sql_db.insert_break_high(all_high_stock)
 
 
 
@@ -36,20 +36,31 @@ def is_break_high(stockID,days):
     #如果用的df【：1】 就需要用.values
     #print today_high
     if today_high>=period_high:
+        stock_h=[]
         day= curr_day.index.values[0]
 
         #print curr_day
-        name=info.ix[stockID]['name']
+        name=info.ix[stockID]['name'].decode('utf-8')
         p_change=curr_day.iloc[0]['p_change']
         turnover=curr_day.iloc[0]['turnover']
 
 
-
+        print day
+        print stockID
+        print p_change
+        print turnover
+        #print day
         #date=curr_day['date']
-        stock=[day,stockID,name,p_change,turnover]
+        stock_h.append(day)
+        stock_h.append(stockID)
+        stock_h.append(name)
+        stock_h.append(p_change)
+        stock_h.append(turnover)
+
         #print name.decode('utf-8')
         #print date
-        all_high_stock.append(stock)
+        #all_high_stock.append(stock)
+        sql_db.insert_break_high(stock_h)
         return True
     else:
         return False
