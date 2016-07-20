@@ -29,7 +29,9 @@ def is_break_high(stockID,days):
     start_day=start_day.strftime("%Y-%m-%d")
     end_day=end_day.strftime("%Y-%m-%d")
     df=ts.get_hist_data(stockID,start=start_day,end=end_day)
-
+    if df.empty:
+        print "%s Trading halt" %info.ix[stockID]['name'].decode('utf-8')
+        return False
     period_high=df['high'].max()
     #print period_high
     curr_day=df[:1]
@@ -68,3 +70,5 @@ def is_break_high(stockID,days):
         return False
 
 loop_all_stocks()
+
+print "Done"
