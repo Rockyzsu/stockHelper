@@ -24,6 +24,7 @@ def is_break_high(stockID,days,fast_type=True):
     end_day=datetime.date(datetime.date.today().year,datetime.date.today().month,datetime.date.today().day)
     days=days*7/5
     #考虑到周六日非交易
+    print stockID
     start_day=end_day-datetime.timedelta(days)
 
     start_day=start_day.strftime("%Y-%m-%d")
