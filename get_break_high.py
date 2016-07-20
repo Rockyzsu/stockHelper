@@ -20,7 +20,7 @@ def loop_all_stocks():
 
 
 
-def is_break_high(stockID,days):
+def is_break_high(stockID,days,fast_type=True):
     end_day=datetime.date(datetime.date.today().year,datetime.date.today().month,datetime.date.today().day)
     days=days*7/5
     #考虑到周六日非交易
@@ -28,7 +28,13 @@ def is_break_high(stockID,days):
 
     start_day=start_day.strftime("%Y-%m-%d")
     end_day=end_day.strftime("%Y-%m-%d")
-    df=ts.get_hist_data(stockID,start=start_day,end=end_day)
+    if fast_type:
+        df=ts.get_h_data(stockID,start=start_day,end=end_day)
+    else:
+        df=ts.get_hist_data(stockID,start=start_day,end=end_day)
+    if type(df)==None:
+        print "None"
+        return False
     if df.empty:
         print "%s Trading halt" %info.ix[stockID]['name'].decode('utf-8')
         return False
@@ -45,9 +51,12 @@ def is_break_high(stockID,days):
 
         #print curr_day
         name=info.ix[stockID]['name'].decode('utf-8')
-        p_change=curr_day.iloc[0]['p_change']
-        turnover=curr_day.iloc[0]['turnover']
-
+        if fast_type:
+            turnover=0
+            p_change=0
+        else:
+            turnover=curr_day.iloc[0]['turnover']
+            p_change=curr_day.iloc[0]['p_change']
 
         print day
         print stockID
