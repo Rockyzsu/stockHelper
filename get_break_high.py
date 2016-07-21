@@ -6,11 +6,11 @@ import datetime
 from sqlite_database import SqliteDb
 info=ts.get_stock_basics()
 all_high_stock=[]
-sql_db=SqliteDb("_20160719")
+sql_db=SqliteDb("Create_HIGH")
 def loop_all_stocks():
     #Óöµ½Í£ÅÆµÄ¡£
     for EachStockID in info.index:
-         if is_break_high(EachStockID,60,False):
+         if is_break_high(EachStockID,60):
              print "High price on",
              print EachStockID,
              print info.ix[EachStockID]['name'].decode('utf-8')

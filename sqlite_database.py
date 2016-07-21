@@ -9,16 +9,17 @@ __author__ = 'rocchen'
 class SqliteDb():
 
 
-    def __init__(self,dbtable):
+    def __init__(self,dbname):
         '''
         self.today = time.strftime("%Y-%m-%d")
         self.DBname = self.today + '.db'
         self.conn = sqlite3.connect(self.DBname)
         '''
-        today = time.strftime("%Y-%m-%d")
-        DBname = today + '.db'
-        self.conn = sqlite3.connect(DBname)
-        self.dbtable=dbtable
+        today = time.strftime("_%Y_%m_%d")
+
+        self.DBname =  dbname+ '.db'
+        self.conn = sqlite3.connect(self.DBname)
+        self.dbtable=today
         create_tb = "CREATE TABLE %s (date varchar(10),id varchar(6), name varchar(30), p_change REAL,turnover REAL);" %self.dbtable
         self.conn.execute(create_tb)
         self.conn.commit()
