@@ -10,7 +10,7 @@ sql_db=SqliteDb("_20160719")
 def loop_all_stocks():
     #Óöµ½Í£ÅÆµÄ¡£
     for EachStockID in info.index:
-         if is_break_high(EachStockID,60):
+         if is_break_high(EachStockID,60,False):
              print "High price on",
              print EachStockID,
              print info.ix[EachStockID]['name'].decode('utf-8')
@@ -33,8 +33,8 @@ def is_break_high(stockID,days,fast_type=True):
         df=ts.get_h_data(stockID,start=start_day,end=end_day)
     else:
         df=ts.get_hist_data(stockID,start=start_day,end=end_day)
-    if type(df)==None:
-        print "None"
+    if df is None:
+        print "None len==0"
         return False
     if df.empty:
         print "%s Trading halt" %info.ix[stockID]['name'].decode('utf-8')
