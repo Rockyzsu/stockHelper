@@ -79,6 +79,14 @@ def is_break_high(stockID,days,fast_type=True):
     else:
         return False
 
-loop_all_stocks()
+#loop_all_stocks()
+
+def get_higher_amount():
+     for EachStockID in info.index:
+         if is_break_high(EachStockID,60,False):
+             print "High price on",
+             print EachStockID,
+             print info.ix[EachStockID]['name'].decode('utf-8')
+             #sql_db.insert_break_high(all_high_stock)
 
 print "Done"
