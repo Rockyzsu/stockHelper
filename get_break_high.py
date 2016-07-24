@@ -1,6 +1,7 @@
 #-*-coding=utf-8-*-
 __author__ = 'rocky'
-#»ñÈ¡ÆÆÖ¸¶¨ÌìÊýÄÚµÄÐÂ¸ß ±ÈÈçÆÆ60ÈÕÐÂ¸ß
+#æ¢æˆutf-8æ ¼å¼
+#èŽ·å–ç ´æŒ‡å®šå¤©æ•°å†…çš„æ–°é«˜ æ¯”å¦‚ç ´60æ—¥æ–°é«˜
 import tushare as ts
 import datetime
 from sqlite_database import SqliteDb
@@ -8,7 +9,7 @@ info=ts.get_stock_basics()
 all_high_stock=[]
 sql_db=SqliteDb("Create_HIGH")
 def loop_all_stocks():
-    #Óöµ½Í£ÅÆµÄ¡£
+    #é‡åˆ°åœç‰Œçš„ã€‚
     for EachStockID in info.index:
          if is_break_high(EachStockID,60,False):
              print "High price on",
@@ -23,7 +24,7 @@ def loop_all_stocks():
 def is_break_high(stockID,days,fast_type=True):
     end_day=datetime.date(datetime.date.today().year,datetime.date.today().month,datetime.date.today().day)
     days=days*7/5
-    #¿¼ÂÇµ½ÖÜÁùÈÕ·Ç½»Ò×
+    #è€ƒè™‘åˆ°å‘¨å…­æ—¥éžäº¤æ˜“
     print stockID
     start_day=end_day-datetime.timedelta(days)
 
@@ -43,8 +44,8 @@ def is_break_high(stockID,days,fast_type=True):
     #print period_high
     curr_day=df[:1]
     today_high=curr_day.iloc[0]['high']
-    #ÕâÀï²»ÄÜÖ±½ÓÓÃ .values
-    #Èç¹ûÓÃµÄdf¡¾£º1¡¿ ¾ÍÐèÒªÓÃ.values
+    #è¿™é‡Œä¸èƒ½ç›´æŽ¥ç”¨ .values
+    #å¦‚æžœç”¨çš„dfã€ï¼š1ã€‘ å°±éœ€è¦ç”¨.values
     #print today_high
     if today_high>=period_high:
         stock_h=[]
