@@ -1,6 +1,6 @@
 #-*-coding=utf-8-*-
 __author__ = 'rocky'
-#»ñÈ¡ÆÆÖ¸¶¨ÌìÊýÄÚµÄÐÂ¸ß ±ÈÈçÆÆ60ÈÕÐÂ¸ß
+#èŽ·å–ç ´æŒ‡å®šå¤©æ•°å†…çš„æ–°é«˜ æ¯”å¦‚ç ´60æ—¥æ–°é«˜
 import tushare as ts
 import datetime
 info=ts.get_stock_basics()
@@ -17,7 +17,7 @@ def loop_all_stocks():
 def is_break_high(stockID,days):
     end_day=datetime.date(datetime.date.today().year,datetime.date.today().month,datetime.date.today().day)
     days=days*7/5
-    #¿¼ÂÇµ½ÖÜÁùÈÕ·Ç½»Ò×
+    #è€ƒè™‘åˆ°å‘¨å…­æ—¥éžäº¤æ˜“
     start_day=end_day-datetime.timedelta(days)
 
     start_day=start_day.strftime("%Y-%m-%d")
@@ -27,8 +27,8 @@ def is_break_high(stockID,days):
     period_high=df['high'].max()
     #print period_high
     today_high=df.iloc[0]['high']
-    #ÕâÀï²»ÄÜÖ±½ÓÓÃ .values
-    #Èç¹ûÓÃµÄdf¡¾£º1¡¿ ¾ÍÐèÒªÓÃ.values
+    #è¿™é‡Œä¸èƒ½ç›´æŽ¥ç”¨ .values
+    #å¦‚æžœç”¨çš„dfã€ï¼š1ã€‘ å°±éœ€è¦ç”¨.values
     #print today_high
     if today_high>=period_high:
         return True
