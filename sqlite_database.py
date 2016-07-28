@@ -1,5 +1,5 @@
 # -*-coding=utf-8-*-
-#Êı¾İ¿âµÄ²Ù×÷
+#æ•°æ®åº“çš„æ“ä½œ
 
 import sqlite3, time, datetime
 
@@ -26,7 +26,7 @@ class SqliteDb():
 
     def store_break_high(self,price_high_data):
 
-        #data ÊÇ´´ĞÂ¸ßµÄ¸ö¹ÉĞÅÏ¢  dataframe
+        #data æ˜¯åˆ›æ–°é«˜çš„ä¸ªè‚¡ä¿¡æ¯  dataframe
         #print today
         #create_tb = 'CREATE TABLE STOCK (date TEXT,id text PRIMARY KEY, p_change REAL,turnover REAL);'
 
