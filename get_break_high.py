@@ -18,7 +18,7 @@ def loop_all_stocks():
              print "High price on",
              print EachStockID,
              print info.ix[EachStockID]['name'].decode('utf-8')
-             sql_db.insert_break_high(all_high_stock)
+             #sql_db.insert_break_high(all_high_stock)
 
     sql_db.close()
 
