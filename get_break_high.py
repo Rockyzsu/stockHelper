@@ -10,13 +10,15 @@ info=ts.get_stock_basics()
 all_high_stock=[]
 sql_db=SqliteDb("Create_HIGH")
 def loop_all_stocks():
-    #����ͣ�Ƶġ�
+
+    #遇到停牌的。
+
     for EachStockID in info.index:
          if is_break_high(EachStockID,60,False):
              print "High price on",
              print EachStockID,
              print info.ix[EachStockID]['name'].decode('utf-8')
-             #sql_db.insert_break_high(all_high_stock)
+             sql_db.insert_break_high(all_high_stock)
 
     sql_db.close()
 
@@ -26,7 +28,8 @@ def is_break_high(stockID,days,fast_type=True):
     end_day=datetime.date(datetime.date.today().year,datetime.date.today().month,datetime.date.today().day)
     days=days*7/5
 
-    #���ǵ������շǽ���
+    #考虑到周六日非交易
+
     print stockID
 
     #考虑到周六日非交易
@@ -49,11 +52,8 @@ def is_break_high(stockID,days,fast_type=True):
     #print period_high
 
     curr_day=df[:1]
-    #today_high=curr_day.iloc[0]['high']
-    #���ﲻ��ֱ���� .values
-    #����õ�df����1�� ����Ҫ��.values
 
-    today_high=df.iloc[0]['high']
+    today_high=curr_day.iloc[0]['high']
     #这里不能直接用 .values
     #如果用的df【：1】 就需要用.values
 
