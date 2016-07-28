@@ -2,17 +2,13 @@
 __author__ = 'rocky'
 #获取破指定天数内的新高 比如破60日新高
 import tushare as ts
-
 import datetime
 from sqlite_database import SqliteDb
-
 info=ts.get_stock_basics()
 all_high_stock=[]
 sql_db=SqliteDb("Create_HIGH")
 def loop_all_stocks():
-
     #遇到停牌的。
-
     for EachStockID in info.index:
          if is_break_high(EachStockID,60,False):
              print "High price on",
@@ -27,13 +23,8 @@ def loop_all_stocks():
 def is_break_high(stockID,days,fast_type=True):
     end_day=datetime.date(datetime.date.today().year,datetime.date.today().month,datetime.date.today().day)
     days=days*7/5
-
     #考虑到周六日非交易
-
     print stockID
-
-    #考虑到周六日非交易
-
     start_day=end_day-datetime.timedelta(days)
 
     start_day=start_day.strftime("%Y-%m-%d")
@@ -50,9 +41,7 @@ def is_break_high(stockID,days,fast_type=True):
         return False
     period_high=df['high'].max()
     #print period_high
-
     curr_day=df[:1]
-
     today_high=curr_day.iloc[0]['high']
     #这里不能直接用 .values
     #如果用的df【：1】 就需要用.values
